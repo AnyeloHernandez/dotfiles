@@ -1,0 +1,9 @@
+{
+  "widgets": [
+    "calendar",
+    "notifications",
+    "mpris",
+    "volume"
+  ]
+}
+
