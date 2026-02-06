@@ -19,6 +19,7 @@
     "network",
     "pulseaudio", 
     "backlight",
+    "power-profiles-daemon",
     "battery",
   ],
 
@@ -61,15 +62,24 @@
     "interval": 1,
     "on-click": "swaync-client -t"
   },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip": true,
+    "tooltip-format": "Power Profile: {profile}\nDriver: {driver}",
+    "format-icons": {
+        "performance": "󰓅",
+        "balanced": "󰾅",
+        "power-saver": "󰾆"    
+    },
+  },
 
   "network": {
     "format-wifi": "󰤢",
-    "format-ethernet": "󰈀 ",
+    "format-ethernet": "{ipaddr}/{cidr} 󰈀 ",
     "format-disconnected": "󰤠 ",
     "interval": 5,
-    "tooltip-format": "{essid} ({signalStrength}%)",
-    "on-click": "nm-connection-editor"
-
+    "tooltip-format": "{ifname}: {ipaddr}/{cidr} | {essid} ({signalStrength}%)",
+    "on-click": "nm-connection-editor",
  },
 
   "cpu": {
