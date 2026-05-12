@@ -1,97 +1,23 @@
-/* --- Global Styles --- */
+    /* --- Global Styles --- */
 * {
   font-family: 'SF Pro Text', 'Inter', 'Segoe UI, NotoSans Nerd Font', sans-serif;
   font-size: 13px;
   min-height: 0;
 }
-
 #waybar {
   background: transparent;
   color: #c6d0f5;
   font-weight: 500;
 }
 
-/* --- Base para Módulos Individuales (Izquierda y Centro) --- */
-/* Mantenemos el look de "islas" separadas */
+/* --- Margen y padding uniformes para TODOS los módulos --- */
 #custom-arch-logo,
 #workspaces,
 #custom-uptime,
 #cpu,
 #memory,
 #clock,
-#custom-pomodoro {
-  background-color: #1a1b26;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-/* --- Espaciados específicos (Lo que daba el "look" original) --- */
-#custom-arch-logo { 
-  color: #2196f3; 
-  margin-left: 4px; 
-  margin-right: 4px; 
-  padding: 0.3rem 0.4rem; 
-}
-
-#workspaces { 
-  margin-right: 4px; 
-  padding: 2px; 
-}
-
-#custom-uptime { 
-  color: #babbf1; 
-  margin-right: 4px; 
-  padding: 0.3rem 0.7rem; 
-}
-
-#cpu { 
-  color: #c6d0f5; 
-  margin-right: 4px; 
-  padding: 0.3rem 0.7rem; 
-}
-
-#memory { 
-  margin-right: 4px; 
-  padding: 0.5rem 0.5rem; 
-}
-
-#clock { 
-  color: #99d1db; 
-  padding: 0.3rem 0.7rem; 
-}
-
-/* Pomodoro como isla independiente antes de la barra derecha */
-#custom-pomodoro {
-  color: #babbf1;
-  font-weight: 600;
-  margin-right: 5px;
-  padding: 0.3rem 0.7rem;
-}
-
-/* --- Hover para Islas --- */
-#custom-uptime:hover, #cpu:hover, #memory:hover, #custom-arch-logo:hover, #clock:hover, #custom-pomodoro:hover {
-  background-color: rgb(41, 42, 53);
-}
-
-/* --- Workspaces Buttons --- */
-#workspaces button {
-  color: #babbf1;
-  border-radius: 5px;
-  padding: 0.3rem 0.6rem;
-  background: transparent;
-  border: none;
-}
-
-#workspaces button.active {
-  color: #99d1db;
-  background-color: rgba(153, 209, 219, 0.1);
-  box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);
-}
-
-/* --- Right Modules (Barra continua/Seamless) --- */
+#custom-pomodoro,
 #bluetooth,
 #network,
 #pulseaudio,
@@ -99,29 +25,98 @@
 #power-profiles-daemon,
 #battery {
   background-color: #1a1b26;
-  padding: 0.3rem 0.7rem;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 0 0.8rem;
+  min-height: 26px; /* altura uniforme para todos */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+/* --- Bordes redondeados: módulos individuales (islas) --- */
+#custom-arch-logo,
+#workspaces,
+#custom-uptime,
+#cpu,
+#memory,
+#clock,
+#custom-pomodoro {
+  border-radius: 6px;
+}
+
+/* --- Espaciados específicos izquierda/centro --- */
+#custom-arch-logo {
+  color: #2196f3;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 0 0.4rem;
+}
+#workspaces {
+  margin-right: 4px;
+  padding: 0 2px;
+}
+#custom-uptime {
+  color: #babbf1;
+  margin-right: 4px;
+}
+#cpu {
   color: #c6d0f5;
+  margin-right: 4px;
 }
-
-#bluetooth { 
-  border-top-left-radius: 6px; 
-  border-bottom-left-radius: 6px; 
-  color: #888888; 
-  font-size: 16px;
+#memory {
+  margin-right: 4px;
 }
-#bluetooth.on { color: #2196f3; }
-#bluetooth.connected { color: #99d1db; }
-
-#network.disconnected { color: #e78284; }
-
-#battery { 
-  border-top-right-radius: 6px; 
-  border-bottom-right-radius: 6px; 
-  margin-right: 6px; 
+#clock {
   color: #99d1db;
 }
+#custom-pomodoro {
+  color: #babbf1;
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+/* --- Hover para islas --- */
+#custom-uptime:hover,
+#cpu:hover,
+#memory:hover,
+#custom-arch-logo:hover,
+#clock:hover,
+#custom-pomodoro:hover {
+  background-color: rgb(41, 42, 53);
+}
+
+/* --- Workspaces Buttons --- */
+#workspaces button {
+  color: #babbf1;
+  border-radius: 5px;
+  padding: 0 0.6rem;
+  background: transparent;
+  border: none;
+  min-height: 26px;
+}
+#workspaces button.active {
+  color: #99d1db;
+  background-color: rgba(153, 209, 219, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);
+}
+
+/* --- Right Modules (barra continua/seamless) --- */
+#bluetooth {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  color: #888888;
+  font-size: 16px;
+}
+#battery {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin-right: 6px;
+  color: #99d1db;
+}
+
+/* --- Estados de módulos derechos --- */
+#bluetooth.on { color: #2196f3; }
+#bluetooth.connected { color: #99d1db; }
+#network.disconnected { color: #e78284; }
 #battery.charging { color: #a6d189; }
 #battery.warning:not(.charging) { color: #e78284; }
 
@@ -130,8 +125,12 @@
 #power-profiles-daemon.balanced { background-color: #2980b9; color: #ffffff; }
 #power-profiles-daemon.power-saver { background-color: #2ecc71; color: #000000; }
 
-/* Hover para la barra continua */
-#bluetooth:hover, #network:hover, #pulseaudio:hover, #backlight:hover, #battery:hover {
+/* --- Hover para barra continua --- */
+#bluetooth:hover,
+#network:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#battery:hover {
   background-color: rgb(41, 42, 53);
 }
 
