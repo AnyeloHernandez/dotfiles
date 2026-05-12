@@ -1,8 +1,11 @@
 {
   "layer": "top",
   "position": "top",
-  "margin-bottom": -10,
   "spacing" : 0,
+  "margin-top": 5,
+  "margin-left": 10,
+  "margin-right": 10,
+  "margin-bottom": 0,
   "modules-left": [
   "custom/arch-logo",
   "hyprland/workspaces",
@@ -20,15 +23,11 @@
     "pulseaudio", 
     "backlight",
     "power-profiles-daemon",
-    "battery",
+    "battery"
   ],
 
   "hyprland/workspaces": {
-    "format": "{name}: {icon}",
-    "format-icons": {
-      "active": "",
-      "default": ""
-    }
+    "format": "{name}"
   },
 
   "bluetooth": {
@@ -49,7 +48,6 @@
     "format": "  {}",
     "escape": true,
     "interval": 5,
-    "tooltip": false,
     "exec": "playerctl metadata --format='{{ artist }} - {{ title }}'",
     "on-click": "playerctl play-pause",
     "max-length": 50
@@ -57,14 +55,12 @@
 
   "clock": {
     "timezone": "America/Guatemala",
-    "tooltip": false,
     "format": "{:%H:%M:%S  -  %A, %d}",
     "interval": 1,
     "on-click": "swaync-client -t"
   },
   "power-profiles-daemon": {
     "format": "{icon}",
-    "tooltip": true,
     "tooltip-format": "Power Profile: {profile}\nDriver: {driver}",
     "format-icons": {
         "performance": "󰓅",
@@ -97,7 +93,6 @@
 
   "custom/arch-logo": {
   "format": "󰣇",
-  "tooltip": false,
   "on-click": "rofi -show drun"
 },
 
@@ -105,7 +100,6 @@
   "custom/uptime": {
     "format": "{}",
     "format-icon": [""], 
-    "tooltip": false,
     "interval": 1600,
     "exec": "$HOME/.config/waybar/scripts/uptime.sh"
   },
@@ -113,7 +107,6 @@
   "backlight": {
         "format": "{icon}  {percent}%",
         "format-icons": ["","󰃜", "󰃛", "󰃞","󰃝","󰃟","󰃠"],
-        "tooltip": false
   },
   
   "pulseaudio": {
@@ -143,20 +136,19 @@
   },
   
   "custom/lock": {
-  "tooltip": false,
   "on-click": "sh -c '(sleep 0s; hyprlock)' & disown",
   "format" : ""
   },
 
   "custom/power": {
   "format": "⏻",
-  "tooltip": false,
   "on-click": "~/.config/waybar/scripts/powermenu.sh"
 },
 
 
 "custom/pomodoro": {
 	"format": "{}",
+    "tooltip": false,
 	"return-type": "json",
 	"exec": "waybar-module-pomodoro",
 	"on-click": "waybar-module-pomodoro toggle",
@@ -164,7 +156,6 @@
 },
 
 "custom/notification": {
-    "tooltip": true,
     "format": "<span size='16pt'>{icon}</span>",
     "format-icons": {
       "notification": "󱅫",
@@ -182,7 +173,7 @@
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
     "escape": true
-},
+}
 
 }
 
