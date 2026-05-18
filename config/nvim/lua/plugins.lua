@@ -135,8 +135,9 @@ require("lazy").setup({
   {
     "neovim/nvim-lspconfig",
     config = function()
-      local lspconfig = require("lspconfig")
-      lspconfig.pylsp.setup({})
+      -- API nueva de nvim 0.11
+      vim.lsp.config('pylsp', {})
+      vim.lsp.enable('pylsp')
     end,
   },
 })
