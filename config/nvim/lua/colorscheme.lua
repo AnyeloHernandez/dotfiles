@@ -1,8 +1,4 @@
--- define your colorscheme here
-local colorscheme = 'monokai_pro'
-
-local is_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-if not is_ok then
-    vim.notify('colorscheme ' .. colorscheme .. ' not found!')
-    return
+local ok, _ = pcall(vim.cmd, "colorscheme catppuccin")
+if not ok then
+  vim.notify("colorscheme catppuccin not found, using default")
 end
