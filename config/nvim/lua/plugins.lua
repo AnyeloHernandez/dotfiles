@@ -15,18 +15,38 @@ require("lazy").setup({
   -- Copilot
   "github/copilot.vim",
 
-  -- Tema
-  "tanvirtin/monokai.nvim",
+  -- Tema Catppuccin
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+      flavour = "mocha",
+      transparent_background = false,
+      italic_comments = true,
+      integrations = {
+        treesitter = true,
+        mason = true,
+        nerdtree = true,
+      },
+    },
+  },
 
   -- NERDTree
   {
     "preservim/nerdtree",
-    dependencies = { "ryanoasis/vim-devicons" },
+    dependencies = {
+      "ryanoasis/vim-devicons",
+      "preservim/nerdcommenter",
+    },
     config = function()
       vim.g.NERDTreeShowHidden = 1
       vim.g.NERDTreeMinimalUI = 1
       vim.g.NERDTreeWinSize = 30
+      vim.g.NERDTreeQuitOnOpen = 0
+      vim.g.webdevicons_enable = 1
       vim.g.webdevicons_enable_nerdtree = 1
+      vim.g.WebDevIconsUnicodeDecorateFolderNodes = 1
 
       vim.api.nvim_create_autocmd("VimEnter", {
         callback = function()
@@ -34,6 +54,8 @@ require("lazy").setup({
           vim.cmd("wincmd p")
         end,
       })
+
+      -- Cerrar nvim si solo queda NERDTree
       vim.api.nvim_create_autocmd("BufEnter", {
         callback = function()
           if vim.fn.tabpagenr("$") == 1
@@ -44,41 +66,64 @@ require("lazy").setup({
           end
         end,
       })
+    end,
+  },
 
-      vim.keymap.set("n", "<C-b>", ":NERDTreeToggle<CR>", { silent = true })
-      vim.keymap.set("n", "<C-f>", ":NERDTreeFind<CR>", { silent = true })
+  -- Startify (pantalla de inicio)
+  {
+    "mhinz/vim-startify",
+    config = function()
+      vim.g.startify_change_to_vcs_root = 1
+      vim.g.startify_lists = {
+        { type = "files",     header = { "   Recientes" } },
+        { type = "dir",       header = { "   Directorio actual" } },
+        { type = "sessions",  header = { "   Sesiones" } },
+        { type = "bookmarks", header = { "   Favoritos" } },
+      }
+    end,
+  },
+
+  -- Snippets
+  {
+    "SirVer/ultisnips",
+    dependencies = { "honza/vim-snippets" },
+    config = function()
+      vim.g.UltiSnipsExpandTrigger = "<tab>"
+      vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
+      vim.g.UltiSnipsJumpBackwardTrigger = "<s-tab>"
     end,
   },
 
   -- Treesitter
-{
-  "nvim-treesitter/nvim-treesitter",
-  branch = "main",   -- antes era master
-  build = ":TSUpdate",
-  lazy = false,
-  main = "nvim-treesitter",   -- antes era "nvim-treesitter.configs"
-  opts = {},
-  init = function()
-    -- Habilitar highlighting e indentación por FileType
-    vim.api.nvim_create_autocmd("FileType", {
-      callback = function()
-        pcall(vim.treesitter.start)
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-      end,
-    })
+  {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    build = ":TSUpdate",
+    lazy = false,
+    main = "nvim-treesitter",
+    opts = {},
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          pcall(vim.treesitter.start)
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
+      local ensure_installed = {
+        "typescript", "javascript", "python", "lua",
+        "bash", "json", "css", "html", "vue",
+      }
+      local already = require("nvim-treesitter.config").get_installed()
+      local to_install = vim.iter(ensure_installed)
+        :filter(function(p) return not vim.tbl_contains(already, p) end)
+        :totable()
+      if #to_install > 0 then
+        require("nvim-treesitter").install(to_install)
+      end
+    end,
+  },
 
-    -- Instalar parsers (reemplaza ensure_installed)
-    local ensure_installed = {
-      "typescript", "javascript", "python", "lua",
-      "bash", "json", "css", "html", "vue",
-    }
-    local already = require("nvim-treesitter.config").get_installed()
-    local to_install = vim.iter(ensure_installed)
-      :filter(function(p) return not vim.tbl_contains(already, p) end)
-      :totable()
-    require("nvim-treesitter").install(to_install)
-  end,
-},  -- Mason + LSP
+  -- Mason + LSP
   { "mason-org/mason.nvim", opts = {} },
   {
     "mason-org/mason-lspconfig.nvim",
