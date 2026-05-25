@@ -32,7 +32,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("waybar")
     hl.exec_cmd("hyprpaper")
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
-    hl.exec_cmd("gnome-keyring-daemon --start --components=ssh")
+    hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
     hl.exec_cmd("hypridle")
     hl.exec_cmd("swaync")
 end)
@@ -49,7 +49,7 @@ hl.env("XDG_MENU_PREFIX",     "arch-")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_TYPE",    "wayland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
-
+hl.env("GNOME_KEYRING_CONTROL", "$XDG_RUNTIME_DIR/keyring")  
 
 -----------------------
 ---- LOOK AND FEEL ----
