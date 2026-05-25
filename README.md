@@ -9,3 +9,5 @@ Entorno de escritorio: hyprland
 ## Configuracion NVIM
 
 - lazy.vim
+
+Extensions:
