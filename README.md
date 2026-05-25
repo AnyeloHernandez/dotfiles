@@ -11,3 +11,4 @@ Entorno de escritorio: hyprland
 - lazy.vim
 
 Extensions:
+- mason
