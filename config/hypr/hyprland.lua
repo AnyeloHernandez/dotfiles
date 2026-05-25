@@ -43,13 +43,12 @@ end)
 
 hl.env("XCURSOR_SIZE",        "24")
 hl.env("HYPRCURSOR_SIZE",     "24")
-hl.env("SSH_AUTH_SOCK",       "$XDG_RUNTIME_DIR/keyring/ssh")
 hl.env("XDG_MENU_PREFIX",     "arch-")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_TYPE",    "wayland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 hl.env("GNOME_KEYRING_CONTROL", "$XDG_RUNTIME_DIR/keyring")  
-
+hl.env("SSH_AUTH_SOCK", "$XDG_RUNTIME_DIR/gcr/ssh")
 -----------------------
 ---- LOOK AND FEEL ----
 -----------------------
