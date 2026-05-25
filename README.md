@@ -7,3 +7,5 @@ SO: Arch Linux
 Entorno de escritorio: hyprland
 
 ## Configuracion NVIM
+
+- lazy.vim
