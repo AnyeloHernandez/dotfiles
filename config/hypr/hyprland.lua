@@ -47,8 +47,9 @@ hl.env("XDG_MENU_PREFIX",     "arch-")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_TYPE",    "wayland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
-hl.env("GNOME_KEYRING_CONTROL", "$XDG_RUNTIME_DIR/keyring")  
-hl.env("SSH_AUTH_SOCK", "$XDG_RUNTIME_DIR/gcr/ssh")
+hl.env("SSH_AUTH_SOCK", "/run/user/1000/gcr/ssh")
+
+
 -----------------------
 ---- LOOK AND FEEL ----
 -----------------------
